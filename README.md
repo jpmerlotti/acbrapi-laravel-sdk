@@ -79,7 +79,8 @@ if ($response->getStatus() === 'authorized') {
 ## Installation Presets
 
 This SDK offers presets for different stacks:
-- [x] Laravel API Only (Core) - **Stable on PHP 8.1-8.4 & L10-L12**
+
+- [x] Laravel API Only (Core) - **Stable on PHP 8.1-8.5 & L10-L13**
 - [x] Database Integration (Models & Migrations)
 - [x] Laravel + Livewire (UI Components)
 - [ ] FilamentPHP Plugin (In Progress)
