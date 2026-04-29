@@ -25,10 +25,10 @@ class ACBrManager
     {
         $this->apiConfig = new Configuration();
         
-        // Configura o Token (Bearer)
+        // Setup Token (Bearer)
         $this->apiConfig->setAccessToken($this->config['token']);
         
-        // Define o ambiente
+        // Define environment
         if ($this->config['environment'] === 'sandbox') {
             $this->apiConfig->setHost('https://sandbox.acbr.api.br');
         } else {
@@ -41,7 +41,7 @@ class ACBrManager
     }
 
     /**
-     * Retorna a API de NFe
+     * Get the NFe API instance
      */
     public function nfe(): NfeApi
     {
@@ -49,7 +49,7 @@ class ACBrManager
     }
 
     /**
-     * Retorna a API de NFCe
+     * Get the NFCe API instance
      */
     public function nfce(): NfceApi
     {
@@ -57,7 +57,7 @@ class ACBrManager
     }
 
     /**
-     * Retorna a API de consulta de CEP
+     * Get the Zip Code (CEP) lookup API instance
      */
     public function cep(): CepApi
     {
@@ -65,12 +65,12 @@ class ACBrManager
     }
 
     /**
-     * Retorna a API de consulta de CNPJ
+     * Get the Company (CNPJ) lookup API instance
      */
     public function cnpj(): CnpjApi
     {
         return new CnpjApi($this->httpClient, $this->apiConfig);
     }
 
-    // Outros métodos para CTe, MDFe, etc podem ser adicionados aqui seguindo o mesmo padrão
+    // Other methods for CTe, MDFe, etc can be added here following the same pattern
 }

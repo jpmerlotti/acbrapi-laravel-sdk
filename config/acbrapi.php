@@ -6,8 +6,8 @@ return [
     | ACBr API Credentials
     |--------------------------------------------------------------------------
     |
-    | Aqui você deve configurar o seu token de acesso da ACBr API.
-    | Você pode obter este token no painel da ACBr API.
+    | Here you should configure your ACBr API access token.
+    | You can obtain this token in the ACBr API dashboard.
     |
     */
     'token' => env('ACBR_API_TOKEN', ''),
@@ -17,8 +17,8 @@ return [
     | API Environment
     |--------------------------------------------------------------------------
     |
-    | Defina se as chamadas serão feitas para o ambiente de produção ou sandbox.
-    | Opções: 'production', 'sandbox'
+    | Define whether the calls will be made to the production or sandbox environment.
+    | Options: 'production', 'sandbox'
     |
     */
     'environment' => env('ACBR_API_ENV', 'sandbox'),
@@ -28,7 +28,7 @@ return [
     | Default Company
     |--------------------------------------------------------------------------
     |
-    | Algumas chamadas exigem o CNPJ da empresa que está emitindo o documento.
+    | Some calls require the CNPJ of the company issuing the document.
     |
     */
     'default_cnpj' => env('ACBR_API_CNPJ', ''),
@@ -38,7 +38,7 @@ return [
     | Timeouts
     |--------------------------------------------------------------------------
     |
-    | Tempo limite para as requisições em segundos.
+    | Request timeout in seconds.
     |
     */
     'timeout' => 30,

@@ -3,64 +3,73 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jpmerlotti/acbrapi-laravel-sdk.svg?style=flat-square)](https://packagist.org/packages/jpmerlotti/acbrapi-laravel-sdk)
 [![Total Downloads](https://img.shields.io/packagist/dt/jpmerlotti/acbrapi-laravel-sdk.svg?style=flat-square)](https://packagist.org/packages/jpmerlotti/acbrapi-laravel-sdk)
 
-O SDK Laravel definitivo para integração com a ACBr API. Desenvolvido para tornar a emissão de documentos fiscais brasileiros (NFe, NFCe, CTe, etc) uma tarefa simples e elegante no Laravel.
+The Laravel SDK for integrating with ACBr API. Designed to make issuing Brazilian fiscal documents (NFe, NFCe, CTe, etc.) a simple and elegant task in Laravel.
 
-## Instalação
+## Installation
 
-Você pode instalar o pacote via composer:
+You can install the package via composer:
 
 ```bash
 composer require jpmerlotti/acbrapi-laravel-sdk
 ```
 
-Você pode publicar o arquivo de configuração com:
+You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="acbrapi-config"
 ```
 
-## Uso
+## Usage
 
-Configure suas credenciais no arquivo `.env`:
+Configure your credentials in your `.env` file:
 
 ```env
-ACBR_API_TOKEN=seu_token_aqui
+ACBR_API_TOKEN=your_token_here
 ACBR_API_ENV=sandbox
 ```
 
-### Exemplo de Emissão de NFe
+### Issuing an NFe Example
 
 ```php
 use ACBr\Laravel\Facades\ACBr;
 
-$response = ACBr::nfe()->emitirNfe($dados);
+$response = ACBr::nfe()->emitirNfe($data);
 
-if ($response->getStatus() === 'autorizado') {
-    return "Nota emitida com sucesso: " . $response->getChave();
+if ($response->getStatus() === 'authorized') {
+    return "NFe issued successfully: " . $response->getChave();
 }
 ```
 
-### Consulta de CEP
+### Zip Code (CEP) Lookup
 
 ```php
 use ACBr\Laravel\Facades\ACBr;
 
-$endereco = ACBr::cep()->consultarCep('01001000');
+$address = ACBr::cep()->consultarCep('01001000');
 ```
 
-## Opções de Instalação (Em breve)
+## Installation Presets (Coming Soon)
 
-Este SDK oferecerá presets para diferentes stacks:
-- [ ] Laravel API Only
+This SDK will offer presets for different stacks:
+
+- [x] Laravel API Only (Core)
 - [ ] Laravel + Blade
 - [ ] Laravel + Livewire
 - [ ] FilamentPHP Plugin
 
-## Créditos
+## Testing
+
+The project uses [Pest PHP](https://pestphp.com/) for testing.
+
+```bash
+composer test
+```
+
+## Credits
 
 - [João Paulo Merlotti](https://github.com/jpmerlotti)
-- [Baseado no SDK oficial da ACBr API](https://github.com/projeto-acbr-oficial/acbrapi-sdk-php)
+- [Based on the official ACBr API SDK](https://github.com/projeto-acbr-oficial/acbrapi-sdk-php)
 
-## Licença
+## License
 
-The MIT License (MIT). Por favor, veja o [Arquivo de Licença](LICENSE.md) para mais informações.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
