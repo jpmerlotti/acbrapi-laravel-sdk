@@ -85,7 +85,7 @@ This SDK offers presets for different stacks:
 - [ ] FilamentPHP Plugin (In Progress)
 
 > [!NOTE]
-> **PHP 8.5 & Laravel 13 Support:** As of April 2026, some testing dependencies (like Pest plugins) are still catching up with Laravel 13. We are monitoring the ecosystem and will enable full support as soon as stable versions are released. Currently, PHP 8.5 may experience runtime instabilities on older Laravel versions.
+> **PHP 8.5 & Laravel 13 Support:** As of April 2026, some testing dependencies (like Pest plugins) are still catching up with Laravel 13. We are monitoring the ecosystem and will enable full support as soon as possible. Currently, PHP 8.5 may experience runtime instabilities on older Laravel versions.
 
 ## Testing
 
