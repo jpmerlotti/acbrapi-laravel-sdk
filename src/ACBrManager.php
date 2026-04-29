@@ -30,7 +30,9 @@ class ACBrManager
         $this->config = $config;
         
         $this->sdkConfig = new Configuration();
-        $this->sdkConfig->setApiKey('x-api-key', $config['token']);
+        // Use client_secret as the token if available, or maintain support for 'token' key
+        $token = $config['client_secret'] ?? $config['token'] ?? '';
+        $this->sdkConfig->setApiKey('x-api-key', $token);
         $this->sdkConfig->setHost($config['endpoints'][$config['environment']] ?? $config['endpoints']['sandbox']);
     }
 

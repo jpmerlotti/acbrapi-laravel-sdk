@@ -16,7 +16,10 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app): void
     {
-        config()->set('acbrapi.token', 'test_token');
+        config()->set('acbrapi.client_id', 'test_id');
+        config()->set('acbrapi.client_secret', 'test_secret');
         config()->set('acbrapi.environment', 'sandbox');
+
+        $app['config']->set('database.default', 'testing');
     }
 }

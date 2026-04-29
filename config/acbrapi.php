@@ -7,9 +7,10 @@ return [
     'environment' => env('ACBR_API_ENV', 'sandbox'),
 
     /**
-     * Your ACBr API Token.
+     * ACBr API Authentication.
      */
-    'token' => env('ACBR_API_TOKEN', ''),
+    'client_id' => env('ACBR_API_CLIENT_ID', ''),
+    'client_secret' => env('ACBR_API_CLIENT_SECRET', ''),
 
     /**
      * Default timeout for requests in seconds.
