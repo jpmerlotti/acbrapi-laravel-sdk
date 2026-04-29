@@ -50,12 +50,14 @@ $address = ACBr::cep()->consultarCep('01001000');
 
 ## Installation Presets (Coming Soon)
 
-This SDK will offer presets for different stacks:
-
-- [x] Laravel API Only (Core)
+This SDK offers presets for different stacks:
+- [x] Laravel API Only (Core) - **Stable on PHP 8.1-8.4 & L10-L12**
 - [ ] Laravel + Blade
 - [ ] Laravel + Livewire
 - [ ] FilamentPHP Plugin
+
+> [!NOTE]
+> **PHP 8.5 & Laravel 13 Support:** As of April 2026, some testing dependencies (like Pest plugins) are still catching up with Laravel 13. We are monitoring the ecosystem and will enable full support as soon as stable versions are released. Currently, PHP 8.5 may experience runtime instabilities on older Laravel versions.
 
 ## Testing
 

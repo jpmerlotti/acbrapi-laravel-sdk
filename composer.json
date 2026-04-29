@@ -1,6 +1,6 @@
 {
     "name": "jpmerlotti/acbrapi-laravel-sdk",
-    "description": "Laravel SDK for integration with ACBr API (NFe, NFCe, CTe, MDFe, etc)",
+    "description": "SDK Laravel para integração com a ACBr API (NFe, NFCe, CTe, MDFe, etc)",
     "keywords": [
         "laravel",
         "acbr",
@@ -13,20 +13,22 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "João Paulo Merlotti",
-            "email": "jpmerlotti@gmail.com"
+            "name": "João Pedro Merlotti",
+            "email": "joaopedromerlotti@gmail.com"
         }
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/support": "^10.0|^11.0",
-        "projeto-acbr-oficial/acbrapi-sdk-php": "^2.61"
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+        "projeto-acbr-oficial/acbrapi-sdk-php": "dev-main as 2.61.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0|^9.0",
-        "phpunit/phpunit": "^10.0",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0"
+        "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
+        "phpunit/phpunit": "^10.0|^11.0",
+        "pestphp/pest": "^2.0|^3.0",
+        "pestphp/pest-plugin-laravel": "^2.0|^3.0",
+        "laravel/pint": "^1.0",
+        "phpstan/phpstan": "^1.10"
     },
     "autoload": {
         "psr-4": {
@@ -48,8 +50,22 @@
             }
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/projeto-acbr-oficial/acbrapi-sdk-php.git"
+        }
+    ],
     "scripts": {
-        "test": "vendor/bin/pest"
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/pint",
+        "stan": "vendor/bin/phpstan analyze"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true

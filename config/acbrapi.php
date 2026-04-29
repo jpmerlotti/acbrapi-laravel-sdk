@@ -1,45 +1,26 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | ACBr API Credentials
-    |--------------------------------------------------------------------------
-    |
-    | Here you should configure your ACBr API access token.
-    | You can obtain this token in the ACBr API dashboard.
-    |
-    */
-    'token' => env('ACBR_API_TOKEN', ''),
-
-    /*
-    |--------------------------------------------------------------------------
-    | API Environment
-    |--------------------------------------------------------------------------
-    |
-    | Define whether the calls will be made to the production or sandbox environment.
-    | Options: 'production', 'sandbox'
-    |
-    */
+    /**
+     * The environment to use: sandbox (test) or production.
+     */
     'environment' => env('ACBR_API_ENV', 'sandbox'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default Company
-    |--------------------------------------------------------------------------
-    |
-    | Some calls require the CNPJ of the company issuing the document.
-    |
-    */
-    'default_cnpj' => env('ACBR_API_CNPJ', ''),
+    /**
+     * Your ACBr API Token.
+     */
+    'token' => env('ACBR_API_TOKEN', ''),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Timeouts
-    |--------------------------------------------------------------------------
-    |
-    | Request timeout in seconds.
-    |
-    */
-    'timeout' => 30,
+    /**
+     * Default timeout for requests in seconds.
+     */
+    'timeout' => env('ACBR_API_TIMEOUT', 30),
+
+    /**
+     * API Endpoints.
+     */
+    'endpoints' => [
+        'sandbox' => 'https://sandbox.acbr.api.br/',
+        'production' => 'https://api.acbr.api.br/',
+    ],
 ];

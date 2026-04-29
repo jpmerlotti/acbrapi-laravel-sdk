@@ -6,35 +6,23 @@ use Illuminate\Support\ServiceProvider;
 
 class ACBrServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/acbrapi.php', 'acbrapi'
-        );
+        $this->mergeConfigFrom(__DIR__.'/../config/acbrapi.php', 'acbrapi');
 
         $this->app->singleton('acbr', function ($app) {
-            return new ACBrManager($app['config']['acbrapi']);
+            return new ACBrManager($app['config']->get('acbrapi'));
         });
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/acbrapi.php' => config_path('acbrapi.php'),
             ], 'acbrapi-config');
-
-            // Aqui futuramente registraremos os comandos de instalação e views
         }
+        
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'acbrapi');
     }
 }

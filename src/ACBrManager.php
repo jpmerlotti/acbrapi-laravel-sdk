@@ -2,75 +2,117 @@
 
 namespace ACBr\Laravel;
 
-use ACBrAPI\Configuration;
-use ACBrAPI\Api\NfeApi;
-use ACBrAPI\Api\NfceApi;
 use ACBrAPI\Api\CepApi;
 use ACBrAPI\Api\CnpjApi;
+use ACBrAPI\Api\ContaApi;
+use ACBrAPI\Api\CteApi;
+use ACBrAPI\Api\CteOsApi;
+use ACBrAPI\Api\DceApi;
+use ACBrAPI\Api\DebugApi;
+use ACBrAPI\Api\DistribuioNFEApi;
+use ACBrAPI\Api\EmailApi;
+use ACBrAPI\Api\EmpresaApi;
+use ACBrAPI\Api\MdfeApi;
+use ACBrAPI\Api\NfceApi;
+use ACBrAPI\Api\NfcomApi;
+use ACBrAPI\Api\NfeApi;
+use ACBrAPI\Api\NfseApi;
 use GuzzleHttp\Client;
+use ACBrAPI\Configuration;
 
 class ACBrManager
 {
     protected array $config;
-    protected Configuration $apiConfig;
-    protected Client $httpClient;
+    protected Configuration $sdkConfig;
 
     public function __construct(array $config)
     {
         $this->config = $config;
-        $this->setupApiConfig();
+        
+        $this->sdkConfig = new Configuration();
+        $this->sdkConfig->setApiKey('x-api-key', $config['token']);
+        $this->sdkConfig->setHost($config['endpoints'][$config['environment']] ?? $config['endpoints']['sandbox']);
     }
 
-    protected function setupApiConfig()
+    protected function getClient(): Client
     {
-        $this->apiConfig = new Configuration();
-        
-        // Setup Token (Bearer)
-        $this->apiConfig->setAccessToken($this->config['token']);
-        
-        // Define environment
-        if ($this->config['environment'] === 'sandbox') {
-            $this->apiConfig->setHost('https://sandbox.acbr.api.br');
-        } else {
-            $this->apiConfig->setHost('https://prod.acbr.api.br');
-        }
-
-        $this->httpClient = new Client([
-            'timeout' => $this->config['timeout'] ?? 30,
+        return new Client([
+            'timeout' => $this->config['timeout'],
         ]);
     }
 
-    /**
-     * Get the NFe API instance
-     */
-    public function nfe(): NfeApi
-    {
-        return new NfeApi($this->httpClient, $this->apiConfig);
-    }
-
-    /**
-     * Get the NFCe API instance
-     */
-    public function nfce(): NfceApi
-    {
-        return new NfceApi($this->httpClient, $this->apiConfig);
-    }
-
-    /**
-     * Get the Zip Code (CEP) lookup API instance
-     */
     public function cep(): CepApi
     {
-        return new CepApi($this->httpClient, $this->apiConfig);
+        return new CepApi($this->getClient(), $this->sdkConfig);
     }
 
-    /**
-     * Get the Company (CNPJ) lookup API instance
-     */
     public function cnpj(): CnpjApi
     {
-        return new CnpjApi($this->httpClient, $this->apiConfig);
+        return new CnpjApi($this->getClient(), $this->sdkConfig);
     }
 
-    // Other methods for CTe, MDFe, etc can be added here following the same pattern
+    public function conta(): ContaApi
+    {
+        return new ContaApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function cte(): CteApi
+    {
+        return new CteApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function cteOs(): CteOsApi
+    {
+        return new CteOsApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function dce(): DceApi
+    {
+        return new DceApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function debug(): DebugApi
+    {
+        return new DebugApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function distribuicaoNfe(): DistribuioNFEApi
+    {
+        return new DistribuioNFEApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function email(): EmailApi
+    {
+        return new EmailApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function empresa(): EmpresaApi
+    {
+        return new EmpresaApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function mdfe(): MdfeApi
+    {
+        return new MdfeApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function nfce(): NfceApi
+    {
+        return new NfceApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function nfcom(): NfcomApi
+    {
+        return new NfcomApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function nfe(): NfeApi
+    {
+        return new NfeApi($this->getClient(), $this->sdkConfig);
+    }
+
+    public function nfse(): NfseApi
+    {
+        return new NfseApi($this->getClient(), $this->sdkConfig);
+    }
 }
