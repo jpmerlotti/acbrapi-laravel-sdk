@@ -1,0 +1,51 @@
+{
+    "name": "jpmerlotti/acbrapi-laravel-sdk",
+    "description": "Laravel SDK for integration with ACBr API (NFe, NFCe, CTe, MDFe, etc)",
+    "keywords": [
+        "laravel",
+        "acbr",
+        "acbrapi",
+        "nfe",
+        "nfce",
+        "cte",
+        "fiscal"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "João Paulo Merlotti",
+            "email": "jpmerlotti@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "projeto-acbr-oficial/acbrapi-sdk-php": "^2.61"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ACBr\\Laravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ACBr\\Laravel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ACBr\\Laravel\\ACBrServiceProvider"
+            ],
+            "aliases": {
+                "ACBr": "ACBr\\Laravel\\Facades\\ACBr"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
