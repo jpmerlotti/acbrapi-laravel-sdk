@@ -101,3 +101,39 @@ Utility for debugging API calls.
 ```php
 $api = ACBr::debug(); // Returns ACBrAPI\Api\DebugApi
 ```
+
+---
+
+## Database & Integration
+
+### Models
+
+The SDK provides the following models to persist data:
+- `ACBr\Laravel\Models\AcbrCompany`: Stores company credentials and metadata.
+- `ACBr\Laravel\Models\AcbrDocument`: Stores fiscal documents (NFe, NFSe, etc.).
+- `ACBr\Laravel\Models\AcbrSearch`: Stores logs of CEP and CNPJ searches.
+
+### Traits
+
+#### InteractsWithACBr
+Add this trait to any model (e.g., `User`, `Tenant`) to link it with ACBr entities.
+```php
+use ACBr\Laravel\Traits\InteractsWithACBr;
+
+$user->acbrCompany; // Get associated company
+$user->acbrDocuments; // Get all documents
+```
+
+## Livewire Components
+
+### acbr-cep-lookup
+A real-time Zip Code lookup component.
+```html
+<livewire:acbr-cep-lookup />
+```
+
+### acbr-nfe-list
+A complete table for listing and filtering NF-e from the database.
+```html
+<livewire:acbr-nfe-list />
+```
